@@ -13,7 +13,7 @@ var plugins = [
 ];
 
 gulp.task('css', function () {
-  return gulp.src(assetsPath + '/sass/*.scss')
+  return gulp.src(assetsPath + '/src/sass/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(postcss(plugins))
