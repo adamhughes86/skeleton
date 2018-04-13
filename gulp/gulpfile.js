@@ -1,15 +1,18 @@
 var gulp = require('gulp');
 var sourcemaps = require('gulp-sourcemaps');
 var sass = require('gulp-sass');
+var postcss = require('gulp-postcss');
+var autoprefixer = require('autoprefixer');
 
 var assetsPath = '../public/assets';
 
 gulp.task('css', function () {
- return gulp.src(assetsPath + '/src/sass/*.scss')
-  .pipe(sourcemaps.init())
-  .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-  .pipe(sourcemaps.write())
-  .pipe(gulp.dest(assetsPath + '/build/css'));
+  return gulp.src(assetsPath + '/scss/*.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(postcss(plugins))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(assetsPath + '/css'));
 });
 
 gulp.task('default', ['css'],  function() {
