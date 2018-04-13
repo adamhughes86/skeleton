@@ -6,8 +6,14 @@ var autoprefixer = require('autoprefixer');
 
 var assetsPath = '../public/assets';
 
+var plugins = [
+  autoprefixer({
+    browsers: ['> 1%'], cascade: false
+  })
+];
+
 gulp.task('css', function () {
-  return gulp.src(assetsPath + '/scss/*.scss')
+  return gulp.src(assetsPath + '/sass/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(postcss(plugins))
